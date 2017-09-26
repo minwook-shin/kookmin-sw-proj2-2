@@ -32,9 +32,11 @@ def c(n, k):
 
 
 # 입력받기
-in_n = int(input("enter n:"))
-in_k = int(input("enter k:"))
-
-# 출력하기
-print(int(c(in_n, in_k)))
-print(int(cf(in_n, in_k)))
+try:
+    in_n = int(input("enter n:"))
+    in_k = int(input("enter k:"))
+except:
+    print("int please!")
+else:  # 출력하기
+    print(int(c(in_n, in_k)))
+    print(int(cf(in_n, in_k)))
