@@ -7,7 +7,6 @@ def factorial(n):  # 팩토리얼을 나타낸 함수
     for i in range(1, n + 1):
         number *= i
     return number
-    print(number)
 
 
 def Cf(n, m):  # 팩토리얼을 이용한 조합의 수
