@@ -66,9 +66,10 @@ def do(db):
                 sortKey = 'Name' if len(parse) == 1 else parse[1]
                 show(db, sortKey)
             elif parse[0] == 'find':
-                for p in db:
-                    if p['Name'] == parse[1]:
-                        print("성공적으로 해당 사용자를 찾았습니다.")
+                for p2 in db:
+                    if p2['Name'] == parse[1]:
+                        print("성공적으로 사용자를 찾았습니다.")
+                        print("나이는 {0}세이고, 이름은 {1}이며 점수는 {2}입니다".format(p2['Age'], p2['Name'], p2['Score']))
                     else:
                         print("잘못된 요청입니다.")  # 없는 사람 예외 처리
                         do(db)
