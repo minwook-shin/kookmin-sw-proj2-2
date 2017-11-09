@@ -20,11 +20,6 @@ class Button(QToolButton):
         size.setHeight(size.height() + 20)
         size.setWidth(max(size.width(), size.height()))
         return size
-class Keytocall(str):
-    def __init__(self):
-        super().__init__()
-
-
 class Calculator(QWidget):
 
     def __init__(self, parent=None):
