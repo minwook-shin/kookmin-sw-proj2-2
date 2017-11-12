@@ -25,6 +25,7 @@ constantList = [
     '빛의 이동 속도 (m/s)',
     '소리의 이동 속도 (m/s)',
     '태양과의 평균 거리 (km)',
+    '상수 (e)',
 ]
 
 functionList = [
@@ -149,6 +150,8 @@ class Calculator(QWidget):
                 self.display.setText(self.display.text() + '340')
             elif key == constantList[3]:
                 self.display.setText(self.display.text() + '1.5E+8')
+            elif key == constantList[4]:
+                self.display.setText(self.display.text() + '2.71828')
             elif key == functionList[0]:
                 n = self.display.text()
                 value = factorial(n)
