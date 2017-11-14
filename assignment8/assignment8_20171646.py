@@ -159,28 +159,31 @@ class Calculator(QWidget):
             self.display.setText(str(value))
         elif key == additionalfunctionList[0]:
             n = self.display.text()
-            a=int(n)
-            value="yes"
-            for i in range(2,a):
-                if a%i ==0:
-                    value="no"
-                    break
+            try:
+                a=int(n)
+                value="yes"
+                for i in range(2,a):
+                    if a%i ==0:
+                        value="no"
+                        break
+            except: value="Error!"
             self.display.setText(str(value))
             self.erasecount=1
         elif key == additionalfunctionList[1]:
             n = self.display.text()
-            a=int(n)
-            value = a*a
+            try: value=float(n)*float(n)
+            except: value="Error!"
             self.display.setText(str(value))
         elif key == additionalfunctionList[2]:
             n = self.display.text()
-            a=int(n)
-            value=oct(a)
+            try: value=oct(int(n))
+            except: value="Error!"
             self.display.setText(str(value))
-        elif key == additionalconstantList[3]:
+        elif key == additionalfunctionList[3]:
             n = self.display.text()
-            a=int(n)
-            value=hex(a)
+            try: value=hex(int(n))
+            except: value="Error!"
+
             self.display.setText(str(value))
         else:
             if self.erasecount == 1:
