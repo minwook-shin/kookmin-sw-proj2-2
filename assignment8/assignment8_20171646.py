@@ -6,7 +6,18 @@ from PyQt5.QtWidgets import QLayout, QGridLayout
 
 from keypad2 import numPadList, operatorList, constantList, functionList
 import calcFunctions
-
+additionalconstantList=[
+    "Second",
+    "Minutes",
+    "Hour",
+    "Day"
+]
+additionalfunctionList=[
+    "소수 판정",
+    "^^2",
+    "8진수",
+    "16진수"
+]
 class Button(QToolButton):
 
     def __init__(self, text, callback):
@@ -20,6 +31,8 @@ class Button(QToolButton):
         size.setHeight(size.height() + 20)
         size.setWidth(max(size.width(), size.height()))
         return size
+
+
 class Calculator(QWidget):
 
     def __init__(self, parent=None):
@@ -29,19 +42,23 @@ class Calculator(QWidget):
         self.display = QLineEdit()
         self.display.setReadOnly(True)
         self.display.setAlignment(Qt.AlignRight)
-        self.display.setMaxLength(15)
+        self.display.setMaxLength(25)
 
         # Button Creation and Placement
         numLayout = QGridLayout()
         opLayout = QGridLayout()
         constLayout = QGridLayout()
         funcLayout = QGridLayout()
+        additionalcLayout= QGridLayout()
+        additionalfLayout=QGridLayout()
 
         buttonGroups = {
-            'num': {'buttons': numPadList, 'layout': numLayout, 'columns': 3},
-            'op': {'buttons': operatorList, 'layout': opLayout, 'columns': 2},
-            'constants': {'buttons': constantList, 'layout': constLayout, 'columns': 1},
-            'functions': {'buttons': functionList, 'layout': funcLayout, 'columns': 1},
+            'num': {'buttons': numPadList, 'layout': numLayout, 'columns': 4},
+            'op': {'buttons': operatorList, 'layout': opLayout, 'columns': 3},
+            'constants': {'buttons': constantList, 'layout': constLayout, 'columns': 2},
+            'functions': {'buttons': functionList, 'layout': funcLayout, 'columns': 2},
+            'Additionalf': {'buttons': additionalfunctionList, 'layout': additionalfLayout, 'columns': 1},
+            'Additionalc': {'buttons': additionalconstantList, 'layout': additionalcLayout, 'columns': 1}
         }
 
         for label in buttonGroups.keys():
@@ -63,6 +80,8 @@ class Calculator(QWidget):
         mainLayout.addLayout(opLayout, 1, 1)
         mainLayout.addLayout(constLayout, 2, 0)
         mainLayout.addLayout(funcLayout, 2, 1)
+        mainLayout.addLayout(additionalcLayout, 3, 0)
+        mainLayout.addLayout(additionalfLayout, 3, 1)
 
         self.setLayout(mainLayout)
 
@@ -117,6 +136,51 @@ class Calculator(QWidget):
         elif key == functionList[3]:
             n = self.display.text()
             value = calcFunctions.decToRoman(n)
+            self.display.setText(str(value))
+        elif key == additionalconstantList[0]:
+            n = self.display.text()
+            if n=='': value=1
+            else: value = int(n)
+            self.display.setText(str(value))
+        elif key == additionalconstantList[1]:
+            n = self.display.text()
+            if n == '': value = 60
+            value = int(n)*60
+            self.display.setText(str(value))
+        elif key == additionalconstantList[2]:
+            n = self.display.text()
+            if n == '': value = 3600
+            else: value = int(n)*3600
+            self.display.setText(str(value))
+        elif key == additionalconstantList[3]:
+            n = self.display.text()
+            if n == '': value=60*3600
+            else: value = int(n)*60*3600
+            self.display.setText(str(value))
+        elif key == additionalfunctionList[0]:
+            n = self.display.text()
+            a=int(n)
+            value="yes"
+            for i in range(2,a):
+                if a%i ==0:
+                    value="no"
+                    break
+            self.display.setText(str(value))
+            self.erasecount=1
+        elif key == additionalfunctionList[1]:
+            n = self.display.text()
+            a=int(n)
+            value = a*a
+            self.display.setText(str(value))
+        elif key == additionalfunctionList[2]:
+            n = self.display.text()
+            a=int(n)
+            value=oct(a)
+            self.display.setText(str(value))
+        elif key == additionalconstantList[3]:
+            n = self.display.text()
+            a=int(n)
+            value=hex(a)
             self.display.setText(str(value))
         else:
             if self.erasecount == 1:
