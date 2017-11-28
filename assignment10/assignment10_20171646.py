@@ -13,10 +13,6 @@ class Guess:
         print("Current: "+self.currentStatus)
         print("Tries: "+str(self.numTries))
 
-        
-
-
-
     def guess(self, character):
         self.currentStatus=''
         count=0
@@ -34,7 +30,7 @@ class Guess:
             else:
                 self.currentStatus+=" _" #맞춘게 없다면 "_" 추가
                 count=3 #아직 맞춘게 없다면 count=3
-        if count!=3: #맞춘게 있다면 True 아니면 False
+        if count!=3: #모든 걸 맞췄다면 True 아니면 False
             return True
         else:
             return False
