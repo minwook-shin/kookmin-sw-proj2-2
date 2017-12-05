@@ -29,7 +29,7 @@ class Guess:
                 self.currentStatus+=" "+self.secretWord[i]
             else:
                 self.currentStatus+=" _" #맞춘게 없다면 "_" 추가
-                count=3 #아직 맞춘게 없다면 count=3
+                count=3 #아직 못 맞춘게 있다면 count=3
         if count!=3: #모든 걸 맞췄다면 True 아니면 False
             return True
         else:
