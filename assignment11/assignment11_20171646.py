@@ -1,6 +1,8 @@
 import unittest
 
 from guess import Guess
+import hangman
+import word
 
 class TestGuess(unittest.TestCase):
 
@@ -46,6 +48,18 @@ class TestGuess(unittest.TestCase):
         self.assertEqual(self.g1.finished(),False)
         self.g1.guess('t')
         self.assertEqual(self.g1.finished(),True)
+    def testHangman(self):
+        hang =hangman.Hangman()
+        self.assertEqual(hang.remainingLives,6)
+        hang.decreaseLife()
+        self.assertEqual(hang.remainingLives,5)
+    def testWord(self):
+        wor = word.Word('words.txt')
+        self.assertEqual(wor.test(),'default')
+        self.assertEqual(type(wor.randFromDB()),str)
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
